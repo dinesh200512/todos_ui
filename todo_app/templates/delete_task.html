@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskBuddy - Delete Task</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        h2 {
+            font-size: 2rem; /* Adjust font size as needed */
+            color: #fff; /* White color for the text */
+            text-align: center; /* Center align the text */
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 5px #fff, /* White inner glow */
+                0 0 10px #fff, 
+                0 0 15px #ffd700, /* White gold outer glow */
+                0 0 20px #ffd700,
+                0 0 25px #ffd700,
+                0 0 30px #ffd700,
+                0 0 35px #ffd700; /* Adjust to achieve the desired glow effect */
+        }
+        body {
+            background-image: url("{{ url_for('static', filename='back.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .logo {
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            max-width: 110px;
+            height: auto;
+        }
+        form {
+            max-width: 600px; /* Increase form width */
+            width: 100%; /* Full width of the container */
+            margin: 0 auto; /* Center the form */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        form input[type="text"],
+        form input[type="date"],
+        form select {
+            width: calc(100% - 20px); /* Full width minus padding */
+            padding: 12px; /* Increase padding */
+            margin: 5px 0 15px; /* Adjust margin */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px; /* Increase font size */
+        }
+
+        form button {
+            width: 100%; /* Full width button */
+            padding: 12px; /* Increase padding */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: center; /* Center buttons horizontally */
+        }
+        .button-group a {
+            display: block;
+            padding: 20px 40px; /* Increase padding for larger button size */
+            margin: 15px; /* Increase margin if needed */
+            color: #000000; /* Font color set to black */
+            text-decoration: none; /* Remove underline */
+            border: none;
+            border-radius: 15px; /* Adjust border radius for a more modern look */
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.5rem; /* Increase font size for larger text */
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+            background: rgba(255, 255, 255, 0.7); /* Slightly transparent background */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8); /* Default gold glow */
+            transform: scale(1); /* Default scale */
+            text-align: center; /* Center text */
+            line-height: 1.5; /* Improve vertical alignment of text */
+        }
+        .button-group a:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); /* Stronger gold glow on hover */
+            transform: scale(1.05); /* Slightly enlarge the button */
+        }
+
+        /* Specific neon gradients for each button */
+        .button-add-task {
+            background: linear-gradient(45deg, #ff6f61, #de3d8a); /* Coral to Deep Pink */
+        }
+        .button-edit-task {
+            background: linear-gradient(45deg, #4caf50, #cddc39); /* Green to Lime */
+        }
+        .button-delete-task {
+            background: linear-gradient(45deg, #f44336, #e57373); /* Red to Light Red */
+        }
+        .button-view-tasks {
+            background: linear-gradient(45deg, #2196f3, #64b5f6); /* Blue to Light Blue */
+        }
+        .button-completed-tasks {
+            background: linear-gradient(45deg, #9c27b0, #ba68c8); /* Purple to Light Purple */
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply delays to each button */
+        .button-group a:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .button-group a:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .button-group a:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+        .button-group a:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+        .button-group a:nth-child(5) {
+            animation-delay: 0.9s;
+        }
+    </style>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="TaskBuddy Logo" class="logo">
+    <h2>Delete Task</h2>
+    <form action="{{ url_for('delete_task') }}" method="POST">
+        <label for="task_name">Task Name:</label>
+        <input type="text" id="task_name" name="task_name" required>
+        <button type="submit">Delete Task</button>
+    </form>
+</body>
+</html>

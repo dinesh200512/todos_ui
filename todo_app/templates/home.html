@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskBuddy - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='back.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .logo {
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            max-width: 110px;
+            height: auto;
+        }
+
+        .start-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+            margin-left: 0px;
+        }
+
+        .start-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .arrow {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid white;
+            border-right: 2px solid white;
+            transform: rotate(45deg);
+            margin-left: 10px;
+        }
+
+        .features {
+            text-align: left;
+            max-width: 600px;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all 0.5s ease-out;
+        }
+
+        .features.visible {
+            opacity: 1;
+            transform: translateX(0);
+            animation: glow 1.5s infinite alternate;
+        }
+
+        .features p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #4f4848, 0 0 20px #4f4848, 0 0 30px #4f4848, 0 0 40px #4f4848, 0 0 50px #4f4848, 0 0 60px #4f4848, 0 0 70px #4f4848;
+            }
+            to {
+                text-shadow: 0 0 20px #4f4848, 0 0 30px #4f4848, 0 0 40px #4f4848, 0 0 50px #4f4848, 0 0 60px #4f4848, 0 0 70px #4f4848, 0 0 80px #4f4848;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const features = document.querySelectorAll('.features');
+            let delay = 0;
+
+            features.forEach((feature, index) => {
+                setTimeout(() => {
+                    feature.classList.add('visible');
+                }, delay);
+                delay += 500; // Adjust the delay for each subsequent element
+            });
+        });
+    </script>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="TaskBuddy Logo" class="logo">
+    <div class="features">
+        <p>📝 Comprehensive Task Management: Multi-level task organization with subtasks and detailed descriptions.</p>
+    </div>
+    <div class="features">
+        <p>🤝 Enhanced Collaboration: Commenting system and attachments for better communication and resource sharing.</p>
+    </div>
+    <div class="features">
+        <p>👌 User-friendly Interface: Intuitive design with responsive layout and visual indicators for priorities and completion.</p>
+    </div>
+    <div class="features">
+        <p>⚙️ Customization and Flexibility: Editable tasks, progress tracking, and adaptable plans.</p>
+    </div>
+    <div class="features">
+        <p>🎨 Responsive and Modern Design: Engaging visual elements and modern aesthetics for an appealing user experience.</p>
+    </div>
+    <a href="{{ url_for('index') }}" class="start-btn">
+        Get Started
+        <span class="arrow"></span>
+    </a>
+</body>
+</html>
